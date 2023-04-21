@@ -9,7 +9,7 @@ let schema = new mongoose.Screma({
     is_verified:{type:Boolean, required:true},
     verify_code:{type:String ,required:true },
 },{
-    timestamp:true
+    timestamps:true
 })
 let collection = 'users' //debe ser plural porque siempre es un conjunto de datos(MINUSCULAAA)
 
