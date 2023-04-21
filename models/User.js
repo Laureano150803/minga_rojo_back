@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-let schema = new mongoose.Screma({
+let schema = new mongoose.Schema({
     email: {type:String , required: true},
     password:{type:String, required: true},
     photo:{type:String, required: true},
@@ -13,5 +13,5 @@ let schema = new mongoose.Screma({
 })
 let collection = 'users' //debe ser plural porque siempre es un conjunto de datos(MINUSCULAAA)
 
-let User = mongoose.model(schema,collection)
+let User = mongoose.model(collection, schema)
 export default User
