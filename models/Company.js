@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
- let schema = mongoose.Schema({
+ let schema = new mongoose.Schema({
     name:{type:String, required:true},
     logo:{type:String, required:true},
-    webside:{tpe:String,required:true},
+    website:{type:String,required:true},
     description:{type:String, required:false},
     active:{type:Boolean, required:true},
     user_id:{
@@ -16,6 +16,6 @@ import mongoose from "mongoose";
 
  let collection = 'companies'
 
- let Company = mongoose.model(schema, collection)
+ let Company = mongoose.model(collection, schema)
 
  export default Company
