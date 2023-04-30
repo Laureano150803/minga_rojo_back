@@ -1,7 +1,7 @@
 /* var express = require('express'); */
 import express from 'express'
 import authorRouter from './authors.js'
-import userRouter from './users.js'
+import userRouter from './auth.js'
 import categoryRouter from './categories.js'
 import chapterRouter from './chapters.js'
 import companyRouter from './companies.js'
