@@ -22,7 +22,7 @@ app.set('view engine', 'ejs');
 
 //middlewares nivel aplicacion
 app.use((req,res,next)=>{
-  console.log(`logged`)
+  console.log(`Manga create`)
   next()
 })
 
@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //routers
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+
 
 app.use(notFound)
 app.use(errorHandler)

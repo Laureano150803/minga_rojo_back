@@ -15,7 +15,7 @@ let schema = new Schema({
     description:{type:String,required:true},
     category_id:{type:Types.ObjectId,
     ref:'categories',
-    required:false
+    required:true
 }
 
 },{
