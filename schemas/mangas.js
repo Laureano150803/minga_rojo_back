@@ -1,6 +1,16 @@
 import joi from 'joi';
 
+
 export const mangasCreate= joi.object({
+  author_id:joi.optional(),
+
+  company_id:joi.optional(),
+
+  cover_photo:joi.optional(),
+
+  category_id:joi.required(),
+
+
   title:joi.string()
     .required()
     .max(15)
