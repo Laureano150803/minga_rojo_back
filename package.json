@@ -9,6 +9,7 @@
     "data": "node ./models/data/data.js"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.4",
     "cores": "^0.8.5",
     "cors": "^2.8.5",
@@ -18,9 +19,19 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "joi": "^17.9.2",
+<<<<<<< HEAD
     "joi-oid": "^1.1.2",
+=======
+<<<<<<< HEAD
+    "jsonwebtoken": "^9.0.0",
+=======
+    "joi-oid": "^1.1.2",
+>>>>>>> SPRINT-2
+>>>>>>> 44351fb7bb2ec1c7a54f60f9860cddb613427a07
     "mongoose": "^7.0.4",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
