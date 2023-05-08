@@ -8,17 +8,30 @@ import express from 'express'
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+<<<<<<< HEAD
 import cors from 'cors'
+=======
+
+import errorHandler from './middlewares/errorHandler.js'
+import notFound from './middlewares/notFound.js'
+
+
+>>>>>>> SPRINT-2
 import indexRouter from './routes/index.js';
 import authsRouter from './routes/auth.js';
 import {__dirname} from './utils.js'
 import notFound from './middlewares/notFound.js'; // se importa el error creado en notfound.js
 import errorHandler from './middlewares/errorHandler.js';
 
+
 const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+
+
+
+
 app.set('view engine', 'ejs');
 
 app.use((req,res,next)=>{
@@ -38,6 +51,7 @@ app.use(express.static(path.join(__dirname, 'public'))); //HASTA QUE SE EJECUTE 
 
 
 app.use('/', indexRouter);
+<<<<<<< HEAD
 app.use('/auth', authsRouter);
 app.use(notFound)//si no hay ruta ejecuta eror 404
 app.use(errorHandler)//
@@ -46,3 +60,12 @@ app.use(errorHandler)//
 
 
 export default app;
+=======
+
+
+
+app.use(notFound) 
+app.use(errorHandler)
+
+export default app;
+>>>>>>> SPRINT-2
