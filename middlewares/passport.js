@@ -9,7 +9,7 @@ passport.use (
     },
     async (jwt_payload,done)=> {
         try {
-            let user =await user.findOne({_id:jwt_payload.ed})
+            let user =await User.findOne({_id:jwt_payload.id})
             if (user){
                 return done(null, user)
             } else {
@@ -23,3 +23,5 @@ passport.use (
     }
     )
     )
+
+    export default passport

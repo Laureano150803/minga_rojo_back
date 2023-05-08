@@ -4,7 +4,7 @@ import bcryptjs from 'bcryptjs'
 import  jwt  from "jsonwebtoken";
 
 let signin = async (req,res,next) => {
-    
+    console.log("hola")
     try {
         await User.findOneAndUpdate(
             {email:req.body.email},
@@ -19,7 +19,8 @@ let signin = async (req,res,next) => {
             {id: req.user.id},
             process.env.SECRET,
             {expiresIn: 60*60*24}
-        )
+            
+        ) 
 
             const user ={
                 email:req.user.email,
