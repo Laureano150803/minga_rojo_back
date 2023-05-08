@@ -1,18 +1,14 @@
-import Manga from '../../models/Manga.js'
-import createHttpError from 'http-errors'
+import Manga from "../../models/Manga.js";
 
-
-let read = async(req,res,next)=>{
-    try{
-        let all = await Manga.find //podemos filtar y restar o buscar por propiedad
+let read = async (req, res, next) => {
+    try {
+        let all = await Manga.find()
         return res.status(200).json({
-            success:true,
+            success: true,
             response: all
         })
-       
-    }catch(error){
-       next(error)
-        }
+    }catch (error) {
+        next(error)
     }
-
+}
 export default read
