@@ -1,17 +1,14 @@
-import Manga from '../../models/Manga.js'
+import Manga from "../../models/Manga.js";
 
-
-
-let read = async(req,res,next)=>{
-    try{
+let read = async (req, res, next) => {
+    try {
         let all = await Manga.find()
         return res.status(200).json({
-            categories: all
+            success: true,
+            response: all
         })
-    }catch(error){
-        return res.status(400).json({
-            error:'error'
-        })
+    }catch (error) {
+        next(error)
     }
 }
 export default read
