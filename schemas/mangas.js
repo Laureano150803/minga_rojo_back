@@ -8,9 +8,6 @@ export const mangasCreate= joi.object({
 
   cover_photo:joi.optional(),
 
-  category_id:joi.required(),
-
-
   title:joi.string()
     .required()
     .max(15)
