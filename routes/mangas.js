@@ -9,8 +9,8 @@ import mangaGet from "../controllers/mangas/get_mangas.js";
 
 let router =Router()
 
-router.get('/', read)
+/* router.get('/', read) */
 router.post('/',validator(mangasCreate),create)
-router.get('/:manga_id',mangaGet)
+router.get('/',mangaGet)
 
 export default router
