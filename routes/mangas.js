@@ -5,12 +5,14 @@ import { mangasCreate } from "../schemas/mangas.js";
 import validator from "../middlewares/validator.js";
 import create from "../controllers/mangas/create.js";
 import read from '../controllers/mangas/read.js'
-import mangaGet from "../controllers/mangas/get_mangas.js";
+import get_one from "../controllers/mangas/get_one.js";
 
 let router =Router()
 
 router.get('/', read)
+router.get('/:id', get_one)
+router.post('/mangas',create)
 router.post('/',validator(mangasCreate),create)
-router.get('/:manga_id',mangaGet)
+
 
 export default router
