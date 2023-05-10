@@ -1,14 +1,13 @@
 
 import Chapter from "../../models/Chapter.js";
 
-let read = async(req,res,next)=>{
+let get_one = async(req,res,next)=>{
     try{
-        let all = await Chapter.find({
-            title: {"$regex": 'ga', $options: 'i'}
-        }, 'pages title -_id' )
+        let {_id} = req.params
+        let one = await Chapter.findOne({id:_id}, 'pages cover_photo order')
         return res.status(200).json({
             succes:true,
-            response: all
+            response: one
         })
         
     }catch(error){
@@ -16,4 +15,6 @@ let read = async(req,res,next)=>{
     }
 }
 
-export default read
+
+export default get_one
+
