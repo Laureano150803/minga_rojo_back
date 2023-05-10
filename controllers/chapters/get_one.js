@@ -1,3 +1,4 @@
+
 import Chapter from "../../models/Chapter.js";
 
 let get_one = async(req,res,next)=>{
@@ -14,4 +15,6 @@ let get_one = async(req,res,next)=>{
     }
 }
 
+
 export default get_one
+
