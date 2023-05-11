@@ -10,13 +10,12 @@ let read = async(req,res,next)=>{
                 categories: all
             })
         }
-        
-        return next(createHttpError(404, 'El recurso no se encontró'))
-
-
     }catch(error){
-        console.log(error);
-        next(error)
+        return  res.status(400).json({
+            error: "error"
+            })
+   /*      console.log(error);
+        next(error) */
         }
     }
 

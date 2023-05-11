@@ -1,5 +1,5 @@
-const User = require ('../models/User')
-const Company = require ('../models/Company')
+const User = /* require */ ('../models/User')
+const Company = /* require */ ('../models/Company')
 
 const finds_id = async (req, res, next)=>{
 

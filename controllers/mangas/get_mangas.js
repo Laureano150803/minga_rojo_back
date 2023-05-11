@@ -8,11 +8,19 @@ let mangaGet = async (req, res, next) => {
         limit:6,
         page:1
     }
-    if(req.query.title){
-        queries.title = new RegExp(req.query.title.trim(),"i")
+    if( req.query.title){
+        queries.title = new RegExp(req.query.title.trim(), 'i')
+        pagination={
+            limit:10,
+            page:1
+        }
     }
     if(req.query.category_id){
         queries.category_id = req.query.category_id.split(',')
+        pagination={
+            limit:10,
+            page:1
+        }
     }
     if(req.query.order){
         sort.title = req.query.order
@@ -30,6 +38,7 @@ let mangaGet = async (req, res, next) => {
         .sort(sort)
         .skip(pagination.page > 0 ? (pagination.page-1)*pagination.limit : 0)
         .limit(pagination.limit > 0 ? pagination.limit : 0)
+        .populate('category_id')
         return res.status(200)
         .json({
             success: true,
