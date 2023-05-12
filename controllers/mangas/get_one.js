@@ -11,5 +11,6 @@ let get_one = async(req,res,next)=>{
     } catch(error){
         next(Error)
     }
+
 }
 export default get_one

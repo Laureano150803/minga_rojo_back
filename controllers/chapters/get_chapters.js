@@ -4,7 +4,10 @@ let get_chapters = async(req, res, next) => { // la funcion controladora debe se
   let queries={}                              //consultas que hay que condicionarlas
   let sort={}
   let pagination={limit:4, page:1}
-
+  if (req.query.manga_id){
+    queries.manga_id = req.query.manga_id
+  }
+  
   if(req.query.title){
       queries.title=new RegExp(req.query.title.trim(),'i')
   }
@@ -23,14 +26,30 @@ let get_chapters = async(req, res, next) => { // la funcion controladora debe se
   if(req.query.limit){
     pagination.limit=req.query.limit
   }
+
+
+  let count = await Chapter.countDocuments(queries)
+  let cantPages1 = Math.ceil(count/pagination.limit)
+  if (count <= 5){
+    pagination.limit = 5
+  }
+
   try
     {
-      let all = await Chapter.find(queries).sort(sort).skip(pagination.page > 0 ? (pagination.page-1)*pagination.limit:0)//desde donde pagino 
+      let all = await Chapter.find(queries, 'title cover_photo order ')
+      .sort(sort)
+      .skip(pagination.page > 0 ? (pagination.page-1)*pagination.limit:0)//desde donde pagino 
       .limit(pagination.limit > 0 ? pagination.limit:0)//hasta donde pagino 
+      if (cantPages1==1){
+        pagination.limit =5
+      }
+
       return res.status(200)
       .json({
         succes:true,
         response: all,
+        count: count,
+        cantPages1: cantPages1
       })
     }
   catch(error){
