@@ -19,7 +19,6 @@ passport.use (
             console.log(error)
             return done(error,false)
         }
-      
     }
     )
     )

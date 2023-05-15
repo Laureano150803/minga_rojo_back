@@ -8,10 +8,11 @@ import {chapterCreate} from '../schemas/chapters.js'
 import chapterExists from "../middlewares/accountChapter.js";
 import orderExists from "../middlewares/exists_order.js";
 import nextOrder from "../middlewares/next_order.js";
-
+import get_one from "../controllers/chapters/get_one.js";
 
 let router = Router()
 
+router.get('/:id', get_one)
 // router.post('/', (req, res, next) => res.status(200).send('author creado'))
 router.get('/', read)
 // router.put('/:id', (req, res, next) => res.status(200).send('autores modificados'))

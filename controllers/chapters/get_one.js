@@ -1,18 +1,23 @@
 import Chapter from "../../models/Chapter.js";
 
-let read = async(req,res,next)=>{
+let get_one = async(req,res,next)=>{
     try{
-        let all = await Chapter.find({
-            title: {"$regex": 'ga', $options: 'i'}
-        }, 'pages title -_id' )
-        return res.status(200).json({
-            succes:true,
-            response: all
-        })
-        
+        let {id} = req.params
+        let one = await Chapter.findOne({_id:id }, 'pages title order manga_id')
+        let next = await Chapter.findOne({order:one.order + 1, manga_id:one.manga_id}, '_id')
+        if(get_one){
+            return res.status(200).json({
+                succes:true,
+                response:one,
+                next: next?._id,
+            })
+        }return res.status(400).json({
+            response: 'chapter not found'
+        })   
     }catch(error){
         next(error)
     }
 }
 
-export default read
+export default get_one
+
