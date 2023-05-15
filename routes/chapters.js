@@ -17,6 +17,8 @@ import get_chapters from '../controllers/chapters/get_chapters.js'
 let router = Router()
 
 // router.post('/', (req, res, next) => res.status(200).send('author creado'))
+router.get('/:id', get_one)
+
 router.get('/', read)
 router.get('/:id', get_one)
 

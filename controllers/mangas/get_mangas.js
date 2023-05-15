@@ -25,6 +25,7 @@ let mangaGet = async (req, res, next) => {
     console.log(queries)
     try {
         let all = await Manga
+
             .find(queries)
             .sort(sort)
             .skip(pagination.page > 0 ? (pagination.page-1)*pagination.limit : 0)
@@ -38,6 +39,7 @@ let mangaGet = async (req, res, next) => {
             success: true,
             response: all,
             count: pages
+
         })
     }catch (error) {
         next(error)

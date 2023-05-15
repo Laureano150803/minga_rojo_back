@@ -7,6 +7,7 @@ import create from "../controllers/mangas/create.js";
 import read from '../controllers/mangas/read.js'
 
 import mangaGet from "../controllers/mangas/get_mangas.js";
+
 import titleExistsCreate from "../middlewares/exist_title.js";
 import finds_id from "../middlewares/finds_id.js";
 import get_one from "../controllers/mangas/get_one.js";
@@ -20,6 +21,7 @@ router.post('/',validator(mangasCreate),titleExistsCreate,finds_id,create)
 router.get('/',mangaGet)
 router.get('/chapters/me',get_MeChapters)
 router.get('/:id', get_one)
+
 
 
 export default router
