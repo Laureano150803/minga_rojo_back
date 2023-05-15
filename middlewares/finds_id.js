@@ -12,7 +12,7 @@ const finds_id = async (req, res, next)=>{
         }
         const company = await Company.findOne({employees: userId});
         if (company){
-            req.doby.company._id=company._id;
+            req.boby.company._id=company._id;
             return next();
         }
         return res.status(404).json({error:'user or company not found'});
