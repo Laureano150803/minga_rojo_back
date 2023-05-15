@@ -12,6 +12,5 @@ let read = async (req, res, next) => {
         next(error)
     }
 }
-
 export default read
 
