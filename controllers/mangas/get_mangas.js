@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+import { query } from "express";
+>>>>>>> e7b02fb21d12184c24220aeb0a6a1cd6166233fa
 import Manga from "../../models/Manga.js";
 
 let mangaGet = async (req, res, next) => {
