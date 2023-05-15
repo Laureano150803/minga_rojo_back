@@ -20,4 +20,5 @@ router.get('/',mangaGet)
 router.get('/chapters/me',get_MeChapters)
 router.get('/:id', get_one)
 
+
 export default router

@@ -1,4 +1,4 @@
-import Manga from "../../models/Manga.js";
+import Manga from "../../models/Manga.js"
 
 let read = async (req, res, next) => {
     try {

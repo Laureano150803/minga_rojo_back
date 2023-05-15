@@ -18,5 +18,5 @@ router.get('/', read)
 // router.put('/:id', (req, res, next) => res.status(200).send('autores modificados'))
 // router.delete('/:id', (req, res, next) => res.status(200).send('autores borrados'))
 router.post('/',validator(chapterCreate), chapterExists,orderExists,nextOrder,  create)
-
+router.get('/',get_chapters)
 export default router
