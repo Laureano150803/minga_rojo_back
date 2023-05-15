@@ -15,7 +15,7 @@ import get_MeChapters from "../controllers/chapters/get_me.js";
 let router =Router()
 
 /* router.get('/', read) */
-router.post('/mangas',create)
+/* router.post('/mangas',create) */
 router.post('/',validator(mangasCreate),titleExistsCreate,finds_id,create)
 router.get('/',mangaGet)
 router.get('/chapters/me',get_MeChapters)

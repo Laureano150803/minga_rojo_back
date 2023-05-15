@@ -9,6 +9,8 @@ import chapterExists from "../middlewares/accountChapter.js";
 import orderExists from "../middlewares/exists_order.js";
 import nextOrder from "../middlewares/next_order.js";
 import get_one from "../controllers/chapters/get_one.js";
+import get_chapters from "../controllers/chapters/get_chapters.js";
+
 
 let router = Router()
 
