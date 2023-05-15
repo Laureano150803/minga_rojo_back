@@ -1,7 +1,5 @@
-<<<<<<< HEAD
-=======
+
 import { query } from "express";
->>>>>>> e7b02fb21d12184c24220aeb0a6a1cd6166233fa
 import Manga from "../../models/Manga.js";
 
 let mangaGet = async (req, res, next) => {
@@ -29,6 +27,7 @@ let mangaGet = async (req, res, next) => {
     console.log(queries)
     try {
         let all = await Manga
+
             .find(queries)
             .sort(sort)
             .skip(pagination.page > 0 ? (pagination.page-1)*pagination.limit : 0)
@@ -42,6 +41,7 @@ let mangaGet = async (req, res, next) => {
             success: true,
             response: all,
             count: pages
+
         })
     }catch (error) {
         next(error)

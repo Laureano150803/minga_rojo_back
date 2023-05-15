@@ -1,5 +1,6 @@
 import Manga from "../../models/Manga.js"
 
+
 let read = async (req, res, next) => {
     try {
         let all = await Manga.find()
@@ -11,5 +12,5 @@ let read = async (req, res, next) => {
         next(error)
     }
 }
-
 export default read
+
