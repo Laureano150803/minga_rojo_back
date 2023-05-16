@@ -8,6 +8,8 @@ import {chapterCreate} from '../schemas/chapters.js'
 import chapterExists from "../middlewares/accountChapter.js";
 import orderExists from "../middlewares/exists_order.js";
 import nextOrder from "../middlewares/next_order.js";
+import read from "../controllers/chapters/read.js"
+import get_chapters from '../controllers/chapters/get_chapters.js'
 
 let router = Router()
 

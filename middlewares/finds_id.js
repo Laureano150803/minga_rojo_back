@@ -1,4 +1,4 @@
-const User = require ('../models/User')
+/* const User = require ('../models/User')
 const Company = require ('../models/Company')
 
 const finds_id = async (req, res, next)=>{
@@ -22,4 +22,4 @@ const finds_id = async (req, res, next)=>{
     }
 
 }
-export default finds_id
+export default finds_id */
