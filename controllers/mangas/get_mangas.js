@@ -1,5 +1,3 @@
-
-import { query } from "express";
 import Manga from "../../models/Manga.js";
 
 let mangaGet = async (req, res, next) => {
