@@ -17,7 +17,7 @@ let router =Router()
 
 /* router.get('/', read) */
 /* router.post('/mangas',create) */
-router.post('/',validator(mangasCreate),titleExistsCreate,finds_id,create)
+router.post('/',validator(mangasCreate),titleExistsCreate,create)
 router.get('/',mangaGet)
 router.get('/chapters/me',get_MeChapters)
 router.get('/:id', get_one)
