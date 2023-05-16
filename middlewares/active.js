@@ -1,22 +1,21 @@
-const Author = require('../models/Author')
-const Publish = requiere('../models/Pusblish')
+import Author from "../models/Author.js"
+import Company from "../models/Company.js"
 
-async function active(req,res,next){
-    const userId =req.user._id;
-    try {
-        const author = await Author.findOne({user:userId});
-
-        if(author && author.active){
-            return next();
-        }
-        const publish = await Publish.finderOne({user: userId});
-
-        if (publish && publish.active){
-            return next();
-        }
-        throw new Error('Authot o edit not found')
-    } catch(err){
-        res.status(401).json({message})
+async function isActive(req,res,next){
+    let author = await Author.findOne({
+        user_id: req.user.id,
+        active: true
+    })
+    let company = await Company.findOne({
+        user_id: req.user.id,
+        active: true
+    })
+    if (author || company){
+        return next()
     }
+    return res.status(400).json({
+        succes:false,
+        messages:"error!"
+    })
 }
-export default active 
+export default isActive

@@ -3,11 +3,8 @@ import joi from 'joi';
 
 export const mangasCreate= joi.object({
   author_id:joi.optional(),
-
   company_id:joi.optional(),
-
   cover_photo:joi.optional(),
-
   title:joi.string()
     .required()
     .max(15)
@@ -24,5 +21,11 @@ export const mangasCreate= joi.object({
   }),
   category_id:joi.string()
   .required()
+})
+export const mangasUpdate = joi.object({
+  title: joi.string().min(3).max(30),
+  cover_photo: joi.string().uri(),
+  description: joi.string().min(3),
+  category_id: joi.string()
 })
 
