@@ -3,6 +3,8 @@ import Chapter from "../../models/Chapter.js";
 
 let get_one = async(req,res,next)=>{
     try{
+
+        
         let {id} = req.params
        
        
