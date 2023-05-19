@@ -12,8 +12,10 @@ let create =async(req, res, next)=>{
             timestamps:one.createdAt
         })
     } catch (error) {
-        console.log(error);
-        next(error)
+       return res.status(400).json({
+        succes:false,
+        message: "Error Chapert Creator"
+       })
     }
 }
 export default create

@@ -16,4 +16,5 @@ let schema = new Schema({
 let collection = 'chapters'
 
 let Chapter = model(collection, schema)
+
 export default Chapter

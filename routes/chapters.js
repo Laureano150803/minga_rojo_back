@@ -10,20 +10,32 @@ import orderExists from "../middlewares/exists_order.js";
 import nextOrder from "../middlewares/next_order.js";
 import read from "../controllers/chapters/read.js";
 import get_chapters from '../controllers/chapters/get_chapters.js'
-
-
+import passport from "../middlewares/passport.js";
+import finds_id from '../middlewares/finds_id.js'
+import is_active from "../middlewares/is_active.js"
+import is_property_of from "../middlewares/is_property_of.js"
+import destroy from "../controllers/chapters/destroy.js"
+import update from "../controllers/chapters/update.js"
+import get_me from "../controllers/chapters/get_me.js";
 
 
 let router = Router()
 
+router.get('/me',passport.authenticate('jwt',{session: false}),finds_id,get_me)
+
+router.get('/:id', get_me)
+
+router.post('/',validator(chapterCreate), chapterExists,orderExists,nextOrder,  create)
+
+router.delete('/:id',passport.authenticate('jwt',{session:false}), finds_id, is_active, is_property_of , destroy )
+
+router.put('/:id',passport.authenticate('jwt',{session:false}), finds_id, is_active, is_property_of , update)
+
+
+
+
+export default router
 // router.post('/', (req, res, next) => res.status(200).send('author creado'))
-router.get('/:id', get_one)
-
 /* router.get('/', read) */
-
-
 // router.put('/:id', (req, res, next) => res.status(200).send('autores modificados'))
 // router.delete('/:id', (req, res, next) => res.status(200).send('autores borrados'))
-router.post('/',validator(chapterCreate), chapterExists,orderExists,nextOrder,  create)
-router.get('/',get_chapters)
-export default router

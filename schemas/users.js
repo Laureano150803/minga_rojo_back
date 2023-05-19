@@ -20,4 +20,5 @@ export const userSesion = joi.object({
             .min(8)
             .max(25)
             .required(),
+            photo: joi.string().uri(),
 })
