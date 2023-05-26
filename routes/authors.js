@@ -1,13 +1,17 @@
-//aca voy a definir los endpoints de los autores 
-//y los voy a exportar para poder utilizarlos 
 import { Router } from "express";
-import read from '../controller/authors/read.js'
+import Multer from "../middlewares/multer.js";
+import uploadImage from "../services/firebase.cjs";
+import create from "../controllers/authors/create.js";
+import validator from "../middlewares/validator.js";
+import { authorCreate } from "../schemas/authors.js";
+import admin from "../controllers/authors/admin.js";
+import update from "../controllers/authors/update.js";
 
 let router = Router()
 
-// router.post('/', (req, res, next) => res.status(200).send('author creado'))
-router.get('/', read)
-// router.put('/:id', (req, res, next) => res.status(200).send('autores modificados'))
-// router.delete('/:id', (req, res, next) => res.status(200).send('autores borrados'))
+router.get('/admin', admin)
+router.put('/:id', update)
+router.post('/', Multer.single('photo'), validator(authorCreate), uploadImage,create)
+
 
 export default router;

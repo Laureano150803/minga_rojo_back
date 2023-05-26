@@ -7,6 +7,7 @@ export const mangasCreate= joi.object({
   cover_photo:joi.optional(),
   title:joi.string()
     .required()
+    .min(3)
     .max(15)
     .messages({ 
       "string.empty": "title is not allowed to be empty"
@@ -23,9 +24,18 @@ export const mangasCreate= joi.object({
   .required()
 })
 export const mangasUpdate = joi.object({
-  title: joi.string().min(3).max(30),
-  cover_photo: joi.string().uri(),
-  description: joi.string().min(3),
-  category_id: joi.string()
+  title: joi.string().min(4).max(30).message({
+    "string.min": "the title must be at least 4 characteres",
+    "string.max": "the title must not have more than 30 characters",
+    "string.required": "the title is required"
+}),
+description: joi.string().min(10).message({
+  "any.required": "Description is a required field.",
+  "string.empty": "Description cannot  be an empty field and need 10 leters."
+}),cover_photo:joi.string().uri().message({
+    "string.uri":"invalid_url"
+}),
+  category_id: joi.any().optional()
+  
 })
 

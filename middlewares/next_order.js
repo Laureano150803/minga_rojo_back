@@ -19,7 +19,7 @@ const nextOrder = async (req, res, next) => {
     // Pasamos al siguiente middleware
     next();
   } catch (err) {
-    console.error(err);
+   
     res.status(500).send('Error interno del servidor');
   }
 };

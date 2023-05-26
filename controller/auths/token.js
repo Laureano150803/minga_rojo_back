@@ -1,12 +1,10 @@
 import User from "../../models/User.js";
 import  jwt  from "jsonwebtoken";
 
-let signin = async (req,res,next) => {
+let token = async (req,res,next) => {
     try {
         await User.findOneAndUpdate(
             {email:req.body.email},
-            //ademas esta en re1.user gracias al md
-            //{email: req.user.email}
             {is_online: true},  
         )
         const token =jwt.sign(
@@ -19,7 +17,6 @@ let signin = async (req,res,next) => {
                 photo:req.user.photo,
                 role:req.user.role,
                 id:req.user.id,
-
         }   
     return res.status(200).json({
             success: true,
@@ -27,10 +24,9 @@ let signin = async (req,res,next) => {
             token,
             user
         })
-
     } catch (error) {
         next(error)
     }
 }
 
-export default signin
+export default token

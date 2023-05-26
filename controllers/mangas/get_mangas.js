@@ -22,7 +22,7 @@ let mangaGet = async (req, res, next) => {
     if(req.query.limit){
         pagination.limit = req.query.limit
     }
-    console.log(queries)
+    
     try {
         let all = await Manga
 
@@ -31,6 +31,7 @@ let mangaGet = async (req, res, next) => {
             .skip(pagination.page > 0 ? (pagination.page-1)*pagination.limit : 0)
             .limit(pagination.limit > 0 ? pagination.limit : 0)
             .populate('category_id')
+            .populate('author_id')
         let count = await Manga
             .countDocuments(queries)
             let pages = Math.ceil(count / pagination.limit) 
