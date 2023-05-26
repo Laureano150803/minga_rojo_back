@@ -1,27 +1,30 @@
-//aca voy a definir los endpoints de los autores 
-//y los voy a exportar para poder utilizarlos 
 import { Router } from "express";
-import { mangasCreate } from "../schemas/mangas.js";
-import validator from "../middlewares/validator.js";
-import create from "../controllers/mangas/create.js";
-import read from '../controllers/mangas/read.js'
-
-import mangaGet from "../controllers/mangas/get_mangas.js";
-
-import titleExistsCreate from "../middlewares/exist_title.js";
-
+import { mangasCreate , mangasUpdate} from "../schemas/mangas.js";
+//CONTROLLERS
 import get_one from "../controllers/mangas/get_one.js";
-import get_MeChapters from "../controllers/chapters/get_me.js";
+import create from "../controllers/mangas/create.js";
+import mangaGet from "../controllers/mangas/get_mangas.js";
+import update from "../controllers/mangas/update.js";
+import get_Me from "../controllers/mangas/get_me.js"
+import read from "../controllers/mangas/read.js"
+import destroy from "../controllers/mangas/destroy.js";
+//MIDDLE 
+import validator from "../middlewares/validator.js";
+import passport from "../middlewares/passport.js"
+import titleExistsCreate from "../middlewares/exist_title.js";
+import find_id from "../middlewares/finds_id.js"
+import is_active from "../middlewares/active.js"
+import is_property_of from "../middlewares/is_property_of.js"
+
 
 let router =Router()
 
-/* router.get('/', read) */
-/* router.post('/mangas',create) */
+/* router.get('/',passport.authenticate('jwt',{session:false}), read) */
 router.post('/',validator(mangasCreate),titleExistsCreate,create)
 router.get('/',mangaGet)
-router.get('/chapters/me',get_MeChapters)
+router.get('/me', passport.authenticate('jwt', {session: false}),find_id, get_Me)
 router.get('/:id', get_one)
-
-
+router.put('/:id', passport.authenticate('jwt', {session: false}),validator(mangasUpdate),  is_active , is_property_of, find_id , update)
+router.delete('/:id', passport.authenticate('jwt', {session: false}), find_id, is_active, is_property_of,  destroy)
 
 export default router

@@ -1,22 +1,30 @@
-const Author = require('../models/Author')
-const Publish = requiere('../models/Pusblish')
+import Author from "../models/Author.js";
+import Company from "../models/Company.js"
 
-async function active(req,res,next){
-    const userId =req.user._id;
-    try {
-        const author = await Author.findOne({user:userId});
-
-        if(author && author.active){
-            return next();
-        }
-        const publish = await Publish.finderOne({user: userId});
-
-        if (publish && publish.active){
-            return next();
-        }
-        throw new Error('Authot o edit not found')
-    } catch(err){
-        res.status(401).json({message})
+async function is_active(req, res, next) {
+  const userId = req.user.id;
+  
+  try {
+    const author = await Author.findOne({ user_id: userId });
+    if (!author) {
+      return res.status(404).json({ message: 'Author not found' });
     }
+    if (!author.active) {
+      return res.status(401).json({ message: 'the Author is inactive' });
+    }
+
+    // const company = await Company.findOne({ user_id: userId });
+    // if (!company) {
+    //   return res.status(404).json({ message: 'Company not found' });
+    // }
+    // if (!company.active) {
+    //   return res.status(401).json({ message: 'Company inactive' });
+    // }
+
+    next();
+  } catch (err) {
+    return res.status(500).json({ message: 'error' });
+  }
 }
-export default active 
+  
+export default is_active;

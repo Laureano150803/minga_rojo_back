@@ -9,10 +9,13 @@ import isVerified from '../middlewares/isVerified.js'
 import passwordIsOk from '../middlewares/passIsOk.js';
 import signout from '../controller/auths/signout.js';
 import passport from '../middlewares/passport.js';
+import token from '../controller/auths/token.js';
+import Multer from '../middlewares/multer.js';
+import uploadImage from '../services/firebase.cjs';
 
 const router = express.Router();
 
-/* GET users listing. */
+
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
@@ -22,7 +25,8 @@ router.get('/admins',(req,res,next)=>res.status(200).json({
   admins:[]
 }))
 
-router.post("/signup",validator(userRegister),accountExistsSignUp,signup)
+router.post("/token",passport.authenticate("jwt", {session: false}),token)
+router.post("/signup",Multer.single(`photo`),validator(userRegister),accountExistsSignUp,uploadImage,signup)
 router.post("/signin",validator(userSesion),accountExistsSignIn,isVerified,passwordIsOk,signin)
 router.post("/signout",passport.authenticate("jwt", {session: false}),signout)
 
