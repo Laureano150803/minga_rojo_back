@@ -7,7 +7,7 @@ let schema = new Schema({
         required:true
     },
     title:{type:String,required:true},
-    cover_photo:{type:String,required:true},
+    cover_photo:{type:String,required:false},
     pages:[{type:String,required:true}],
     order:{type:Number,required:true}
 },{
@@ -16,4 +16,5 @@ let schema = new Schema({
 let collection = 'chapters'
 
 let Chapter = model(collection, schema)
+
 export default Chapter
