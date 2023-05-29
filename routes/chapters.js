@@ -10,6 +10,8 @@ import orderExists from "../middlewares/exists_order.js";
 import nextOrder from "../middlewares/next_order.js";
 import read from "../controllers/chapters/read.js";
 import get_chapters from '../controllers/chapters/get_chapters.js'
+import Multer from "../middlewares/multer.js";
+import uploadImage from "../services/firebase.cjs";
 
 
 
@@ -24,6 +26,6 @@ router.get('/:id', get_one)
 
 // router.put('/:id', (req, res, next) => res.status(200).send('autores modificados'))
 // router.delete('/:id', (req, res, next) => res.status(200).send('autores borrados'))
-router.post('/',validator(chapterCreate), chapterExists,orderExists,nextOrder,  create)
+router.post('/:id',Multer.single('pages'),validator(chapterCreate), chapterExists,orderExists,nextOrder,uploadImage,  create)
 router.get('/',get_chapters)
 export default router

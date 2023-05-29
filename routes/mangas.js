@@ -15,12 +15,14 @@ import titleExistsCreate from "../middlewares/exist_title.js";
 import find_id from "../middlewares/finds_id.js"
 import is_active from "../middlewares/active.js"
 import is_property_of from "../middlewares/is_property_of.js"
+import Multer from "../middlewares/multer.js";
+import uploadImage from "../services/firebase.cjs";
 
 
 let router =Router()
 
 /* router.get('/',passport.authenticate('jwt',{session:false}), read) */
-router.post('/',validator(mangasCreate),titleExistsCreate,create)
+router.post('/', Multer.single('cover_photo'),validator(mangasCreate),titleExistsCreate,uploadImage,create)
 router.get('/',mangaGet)
 router.get('/me', passport.authenticate('jwt', {session: false}),find_id, get_Me)
 router.get('/:id', get_one)

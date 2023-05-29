@@ -12,10 +12,11 @@ export const chapterCreate = joi.object({
     order: joi.number().min(1).messages({
         "any.required":"your chapter must have a order"
     }),
-    pages:joi.array().items(
-        joi.string().uri()).messages({
-            'string.uri': 'The field must be a valid URL',
-            'string.empty': 'your manga should have pages'
-        })
+    pages: joi.string().uri().messages({
+    'string.empty': 'your manga should have pages'
+    })
+            
+            
+        
 })
 

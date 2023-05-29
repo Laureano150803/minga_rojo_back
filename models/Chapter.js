@@ -4,7 +4,7 @@ let schema = new Schema({
     manga_id:{
         type:Types.ObjectId,
         ref:'mangas',
-        required:true
+        required:false
     },
     title:{type:String,required:true},
     cover_photo:{type:String,required:false},

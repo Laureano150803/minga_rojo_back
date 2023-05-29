@@ -1,16 +1,18 @@
-import createHttpError from "http-errors";
 import Chapter from "../../models/Chapter.js"
 
-let create =async(req, res, next)=>{
+const create =async(req, res, next)=>{
     try {
-        console.log(req.body)
-        let one = await new Chapter(req.body)
-        await one.save()
-        return res.status (201).json({
-            chapter:one, 
-            success:true,
-            timestamps:one.createdAt
+        const{firebaseUrl} = req.file || ''
+        const {title, order} = req.body
+
+
+        let chapter = new Chapter({
+            title,
+            order,
+            pages:firebaseUrl
         })
+        await chapter.save()
+        return res.status (201).json({message: 'Chapter created successfully'})
     } catch (error) {
         console.log(error);
         next(error)
