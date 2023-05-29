@@ -8,14 +8,14 @@ async function is_active(req, res, next){
         return next();
       }
       
-    //   const company = await Company.findOne({ user_id: req.user._id});
-    //   if (company.active === true) {
-    //     return next();
-    //   }
-    //   return res.status(404).json({
-    //     success: false,
-    //     message: ['Author or company not found']
-    //   })  
+      const company = await Company.findOne({ user_id: req.user._id});
+      if (company.active === true) {
+        return next();
+      }
+      return res.status(404).json({
+        success: false,
+        message: ['Author or company not found']
+      })  
     } 
     
     catch (error) {

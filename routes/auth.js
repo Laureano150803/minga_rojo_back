@@ -9,6 +9,7 @@ import isVerified from '../middlewares/isVerified.js'
 import passwordIsOk from '../middlewares/passIsOk.js';
 import signout from '../controller/auths/signout.js';
 import passport from '../middlewares/passport.js';
+import verifyEmail from "../controller/auths/verifyEmail.js"
 
 const router = express.Router();
 
@@ -21,7 +22,7 @@ router.get('/admins',(req,res,next)=>res.status(200).json({
   success:true,
   admins:[]
 }))
-
+router.get('/verify',verifyEmail)
 router.post("/signup",validator(userRegister),accountExistsSignUp,signup)
 router.post("/signin",validator(userSesion),accountExistsSignIn,isVerified,passwordIsOk,signin)
 router.post("/signout",passport.authenticate("jwt", {session: false}),signout)

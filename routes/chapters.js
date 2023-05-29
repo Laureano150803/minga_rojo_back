@@ -23,11 +23,12 @@ let router = Router()
 
 router.get('/me',passport.authenticate('jwt',{session: false}),finds_id,get_me)
 
+router.delete('/:id',passport.authenticate('jwt',{session:false}), finds_id, is_active, is_property_of , destroy )
+
 router.get('/:id', get_me)
 
 router.post('/',validator(chapterCreate), chapterExists,orderExists,nextOrder,  create)
 
-router.delete('/:id',passport.authenticate('jwt',{session:false}), finds_id, is_active, is_property_of , destroy )
 
 router.put('/:id',passport.authenticate('jwt',{session:false}), finds_id, is_active, is_property_of , update)
 
