@@ -17,7 +17,7 @@ const uploadImage = async (req, res, next) => {
     if (!req.file) return next();
 
     const photo = req.file
-    const nameFile = Date.now() + "." + photo.originalname.split('.').pop();
+    const nameFile = Date.now() + "." + photo.originalname.split('.').trim();
 
     const file = bucket.file(nameFile);
 
